@@ -9,24 +9,23 @@ Example (clickable):
 alt="recsign" width="240" height="180" border="10" /></a>
 
 
-Building with `GCC` under Ubuntu 16.04:
-```
-gcc -Wall -fPIC gstrecsign.c -o libgstrecsign.so --shared $(pkg-config --cflags --libs gstreamer-1.0)
-```
-
 Dependencies:
 ```
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install gstreamer-1.0 gstreamer1.0-tools
+sudo apt-get install build-essential gstreamer-1.0 gstreamer1.0-tools libgstreamer1.0-dev
 ```
 
-Installing:
+Building:
+```
+make
+```
 
-Copy `libgstrecsign.so` to your gstreamer `lib` dir, e.g.
+Installing (needs sudo):
 ```
-cp libgstrecsign.so /usr/lib/x86_64-linux-gnu/gstreamer-1.0/
+sudo make install
 ```
+
 Example pipeline:
 ```
 gst-launch-1.0 videotestsrc ! video/x-raw, width=1280, height=720 ! recsign ! autovideosink
